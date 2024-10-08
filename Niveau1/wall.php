@@ -102,7 +102,18 @@
                         </div>                                            
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?></small>
-                            <a href=""><?php echo ("#".$post['taglist']) ?></a>
+                            <a href=""><?php 
+                                $alltags = $post['taglist'];
+                                $tag = explode(",", $alltags);
+        
+                                for ($i = 0; $i < count($tag); $i++) {
+                                    if ($i == count($tag) - 1) {
+                                        echo ("#" . $tag[$i] . "");
+                                    } else {
+                                        echo ("#" . $tag[$i] . ", ");
+                                    }
+                                }
+                            ?></a>
                         </footer>
                     </article>
                 <?php } ?>
