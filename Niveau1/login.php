@@ -14,7 +14,7 @@ session_start();
         <meta charset="utf-8">
         <title>ReSoC - Connexion</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style2.css"/>
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <?php 
@@ -43,12 +43,12 @@ session_start();
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
-                        $emailAVerifier = $_POST['???'];
-                        $passwdAVerifier = $_POST['???'];
+                        $emailAVerifier = $_POST['email'];
+                        $passwdAVerifier = $_POST['motpasse'];
 
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
-                        $$mysqli = connectToDatabase();
+                        $mysqli = connectToDatabase();
 
                         //Etape 4 : Petite sécurité
                         // pour éviter les injection sql : https://www.w3schools.com/sql/sql_injection.asp
@@ -76,11 +76,11 @@ session_start();
                             // Etape 7 : Se souvenir que l'utilisateur s'est connecté pour la suite
                             // documentation: https://www.php.net/manual/fr/session.examples.basic.php
                             $_SESSION['connected_id']=$user['id'];
+                            header("Location: wall.php?user_id=".$_SESSION['connected_id']);
                         }
                     }
                     ?>                     
                     <form action="login.php" method="post">
-                        <input type='hidden'name='???' value='achanger'>
                         <dl>
                             <dt><label for='email'>E-Mail</label></dt>
                             <dd><input type='email'name='email'></dd>
@@ -93,6 +93,7 @@ session_start();
                         Pas de compte?
                         <a href='registration.php'>Inscrivez-vous.</a>
                     </p>
+
 
                 </article>
             </main>

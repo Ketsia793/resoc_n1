@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <title>ReSoC - Inscription</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style2.css"/>
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
         <?php 
@@ -40,9 +40,9 @@
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
-                        $new_email = $_POST['???'];
-                        $new_alias = $_POST['???'];
-                        $new_passwd = $_POST['???'];
+                        $new_email = $_POST['email'];
+                        $new_alias = $_POST['pseudo'];
+                        $new_passwd = $_POST['motpasse'];
 
 
                         //Etape 3 : Ouvrir une connexion avec la base de donnée.
@@ -53,9 +53,11 @@
                         $new_email = $mysqli->real_escape_string($new_email);
                         $new_alias = $mysqli->real_escape_string($new_alias);
                         $new_passwd = $mysqli->real_escape_string($new_passwd);
+
                         // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
                         $new_passwd = md5($new_passwd);
                         // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
+
                         //Etape 5 : construction de la requete
                         $lInstructionSql = "INSERT INTO users (id, email, password, alias) "
                                 . "VALUES (NULL, "
@@ -70,13 +72,13 @@
                             echo "L'inscription a échouée : " . $mysqli->error;
                         } else
                         {
-                            echo "Votre inscription est un succès : " . $new_alias;
+                            echo "Votre inscription est un succès " . $new_alias . ".";
                             echo " <a href='login.php'>Connectez-vous.</a>";
                         }
                     }
                     ?>                     
                     <form action="registration.php" method="post">
-                        <input type='hidden'name='???' value='achanger'>
+                        <input type='hidden' name='???' value='achanger'>
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
                             <dd><input type='text'name='pseudo'></dd>
