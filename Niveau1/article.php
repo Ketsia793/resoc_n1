@@ -1,6 +1,3 @@
-<?php 
-
-function createArticle($post) { ?>
     <article>
         <h3>
             <time><?php echo $post['created'] ?></time>
@@ -27,5 +24,3 @@ function createArticle($post) { ?>
             ?></a>
         </footer>
     </article>
-
-<?php } ?>
