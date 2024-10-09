@@ -8,7 +8,8 @@
     </head>
     <body>
        
-        <?php include'header.php'; 
+        <?php include 'header.php'; 
+        include 'connection.php';
         ?>
        
         <div id="wrapper">
@@ -21,15 +22,19 @@
              * Etape 1: Le mur concerne un mot-clé en particulier
              */
             $tagId = intval($_GET['tag_id']);
-            créer une condition qui ferai apparaître une page erreur
+            // $tag_id = $_GET['tag_id'];
+            // if (isset($tag_id)) {
+            //     echo 'la variable $tag_id existe';
+            //  } else {
+            //     echo 'la variable $tag_id nexiste pas : Erreur';
+            // }
             ?>
             <?php
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+            $mysqli = connectToDatabase();
             ?>
-
             <aside>
                 <?php
                 /**
