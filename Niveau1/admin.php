@@ -13,7 +13,7 @@
 
         <?php
         // Etape 1: Ouvrir une connexion avec la base de donnée.
-        include 'connexion.php';
+        include 'connection.php';
         
         ?>
         <div id="wrapper" class='admin'>

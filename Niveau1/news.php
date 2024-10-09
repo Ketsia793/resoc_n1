@@ -1,3 +1,8 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -23,13 +28,16 @@
                 
                 <?php
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                include 'connexion.php';
+                include 'connection.php';
+                $mysqli = connect();
+                
 
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
+                    posts.user_id,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
