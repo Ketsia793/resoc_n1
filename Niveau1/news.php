@@ -35,6 +35,7 @@
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.id,
                     posts.created,
                     users.alias as author_name,  
                     posts.user_id,
@@ -69,9 +70,8 @@
                     <?php 
                         include 'article.php';
                     ?>
-                    <?php
-                    // avec le <?php ci-dessus on retourne en mode php 
-                }// cette accolade ferme et termine la boucle while ouverte avant.
+                <?php
+                }
                 ?>
 
             </main>
