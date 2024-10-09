@@ -1,3 +1,10 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -13,7 +20,7 @@
 
         <?php
         // Etape 1: Ouvrir une connexion avec la base de donnée.
-        include 'connection.php';
+        $mysqli = connectToDatabase();
         
         ?>
         <div id="wrapper" class='admin'>

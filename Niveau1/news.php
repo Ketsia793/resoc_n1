@@ -1,6 +1,8 @@
 <?php 
     error_reporting(-1);
     ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
 ?>
 
 <!doctype html>
@@ -28,9 +30,7 @@
                 
                 <?php
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                include 'connection.php';
-                $mysqli = connect();
-                
+                $mysqli = connectToDatabase();
 
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                 $laQuestionEnSql = "
