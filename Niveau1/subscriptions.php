@@ -1,3 +1,10 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -27,8 +34,9 @@
                 <?php
                 // Etape 1: récupérer l'id de l'utilisateur
                 $userId = intval($_GET['user_id']);
+
                 // Etape 2: se connecter à la base de donnée
-                include 'connexion.php';
+                $mysqli = connectToDatabase();
 
                 // Etape 3: récupérer le nom de l'utilisateur
                 $laQuestionEnSql = "
@@ -47,7 +55,7 @@
                     ?>
                     <article>
                         <img src="user.jpg" alt="blason"/>
-                        <h3><?php echo $followed['alias'] ?></h3>
+                        <h3><a href="wall.php?user_id=<?php echo $followed['id'] ?>"><?php echo $followed['alias'] ?></a></h3>
                         <p>id: <?php echo $followed['id'] ?></p>                    
                     </article>
                 <?php } ?>

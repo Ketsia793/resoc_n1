@@ -1,3 +1,10 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -23,13 +30,15 @@
                 
                 <?php
                 // Etape 1: Ouvrir une connexion avec la base de donnée.
-                include 'connexion.php';
+                $mysqli = connectToDatabase();
 
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.id,
                     posts.created,
                     users.alias as author_name,  
+                    posts.user_id,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
@@ -61,9 +70,8 @@
                     <?php 
                         include 'article.php';
                     ?>
-                    <?php
-                    // avec le <?php ci-dessus on retourne en mode php 
-                }// cette accolade ferme et termine la boucle while ouverte avant.
+                <?php
+                }
                 ?>
 
             </main>

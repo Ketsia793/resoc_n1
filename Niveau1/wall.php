@@ -1,3 +1,10 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -18,7 +25,7 @@
             
             <?php
             // Etape 2: se connecter à la base de donnée
-            include 'connexion.php';
+            $mysqli = connectToDatabase();
             ?>
 
             <aside>
@@ -46,7 +53,7 @@
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, posts.user_id,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id

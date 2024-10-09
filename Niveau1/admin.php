@@ -1,3 +1,10 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -13,7 +20,7 @@
 
         <?php
         // Etape 1: Ouvrir une connexion avec la base de donnée.
-        include 'connexion.php';
+        $mysqli = connectToDatabase();
         
         ?>
         <div id="wrapper" class='admin'>
@@ -74,7 +81,7 @@
                     // echo "<pre>" . print_r($tag, 1) . "</pre>";
                     ?>
                     <article>
-                        <h3><?php echo $tag['alias'] ?></h3>
+                        <h3><a href="wall.php?user_id=<?php echo $tag['id'] ?>"><?php echo $tag['alias'] ?></a></h3>
                         <p>id: <?php echo $tag['id'] ?></p>
                         <nav>
                             <a href="wall.php?user_id=<?php echo $tag['id'] ?>">Mur</a>
