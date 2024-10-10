@@ -8,7 +8,8 @@
     </head>
     <body>
        
-        <?php include'header.php'; 
+        <?php include 'header.php'; 
+        include 'connection.php';
         ?>
        
         <div id="wrapper">
@@ -21,14 +22,19 @@
              * Etape 1: Le mur concerne un mot-clé en particulier
              */
             $tagId = intval($_GET['tag_id']);
+            // $tag_id = $_GET['tag_id'];
+            // if (isset($tag_id)) {
+            //     echo 'la variable $tag_id existe';
+            //  } else {
+            //     echo 'la variable $tag_id nexiste pas : Erreur';
+            // }
             ?>
             <?php
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+            $mysqli = connectToDatabase();
             ?>
-
             <aside>
                 <?php
                 /**
@@ -38,7 +44,8 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($tag, 1) . "</pre>";
+                
+                ($tag);
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -83,7 +90,7 @@
                 while ($post = $lesInformations->fetch_assoc())
                 {
 
-                    echo "<pre>" . print_r($post, 1) . "</pre>";
+                     ($post);
                     ?>                
                     <article>
                         <h3>

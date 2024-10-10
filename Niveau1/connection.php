@@ -1,7 +1,7 @@
 <?php 
     // Etape 1: Ouvrir une connexion avec la base de donnée.
     function connectToDatabase() {
-        $mysql = new mysqli("localhost", "root", "", "socialnetwork");
+        $mysql = new mysqli("localhost", "root", "root", "socialnetwork");
                     
         // Vérification
         if ($mysql->connect_errno)
