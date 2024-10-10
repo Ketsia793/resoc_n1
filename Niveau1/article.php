@@ -15,22 +15,29 @@
         </div>
         <footer>
             <small>♥ <?php echo $post['like_number'] ?> </small>
-            <a href="tags.php?tag_id=<?php echo $post['tag_id'] ?>"><?php 
+            <!-- <a href=""> -->
+                <?php 
 
                 if (! $post['taglist']) {
                     echo ("There is no #tag");
                 } else {
                     $alltags = $post['taglist'];
+                    $alltag_ids = $post['tag_idlist'];
                     $tag = explode(",", $alltags);
+                    $tag_id = explode(",", $alltag_ids);
+
+                    // var_dump($alltag_ids);
+                    // var_dump($post);
                 
                     for ($i = 0; $i < count($tag); $i++) {
                         if ($i == count($tag) - 1) {
-                            echo ("#" . $tag[$i] . "");
+                            ?><a href="tags.php?tag_id=<?php echo $tag_id[$i] ?>"><?php echo (" #" . $tag[$i] . "");
                         } else {
-                            echo ("#" . $tag[$i] . ", ");
+                            ?><a href="tags.php?tag_id=<?php echo $tag_id[$i] ?>"><?php echo ("#" . $tag[$i] . ",");
                         }
                     }
                 }
-            ?></a>
+            ?>
+            <!-- </a> -->
         </footer>
     </article>
