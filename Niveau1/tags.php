@@ -9,7 +9,7 @@
     <body>
        
         <?php include 'header.php'; 
-        include 'connection.php';
+            include 'connection.php';
         ?>
        
         <div id="wrapper">
@@ -21,13 +21,14 @@
             /**
              * Etape 1: Le mur concerne un mot-clé en particulier
              */
-            $tagId = intval($_GET['tag_id']);
-            // $tag_id = $_GET['tag_id'];
-            // if (isset($tag_id)) {
+            // echo 'tag_id : ' . htmlspecialchars($_GET['tag_id']);
+            // if (isset($_GET['tag_id'])) {
             //     echo 'la variable $tag_id existe';
             //  } else {
             //     echo 'la variable $tag_id nexiste pas : Erreur';
             // }
+            // $tagId = $_GET['tag_id'];
+            
             ?>
             <?php
             /**
@@ -65,7 +66,8 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
-                    users.alias as author_name,  
+                    users.alias as author_name, 
+                    posts.user_id, 
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts_tags as filter 
@@ -98,7 +100,7 @@
                 setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
                 echo date_format($date, 'l d-m-Y H:i:s'); ?>           
                         </h3>
-                        <address> <?php echo $post['author_name']?> par AreTirer</address>
+                        <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name']?></a>par AreTirer</address>
                         <div>
                             <?php echo $post['content']?>
                         </div>                                            
