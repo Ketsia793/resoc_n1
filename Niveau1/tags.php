@@ -27,7 +27,7 @@
             //  } else {
             //     echo 'la variable $tag_id nexiste pas : Erreur';
             // }
-            // $tagId = $_GET['tag_id'];
+            $tagId = $_GET['tag_id'];
             
             ?>
             <?php
