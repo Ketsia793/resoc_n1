@@ -12,14 +12,19 @@
         <footer>
             <small>♥ <?php echo $post['like_number'] ?> </small>
             <a href=""><?php 
-                $alltags = $post['taglist'];
-                $tag = explode(",", $alltags);
-            
-                for ($i = 0; $i < count($tag); $i++) {
-                    if ($i == count($tag) - 1) {
-                        echo ("#" . $tag[$i] . "");
-                    } else {
-                        echo ("#" . $tag[$i] . ", ");
+
+                if (! $post['taglist']) {
+                    echo ("There is no #tag");
+                } else {
+                    $alltags = $post['taglist'];
+                    $tag = explode(",", $alltags);
+                
+                    for ($i = 0; $i < count($tag); $i++) {
+                        if ($i == count($tag) - 1) {
+                            echo ("#" . $tag[$i] . "");
+                        } else {
+                            echo ("#" . $tag[$i] . ", ");
+                        }
                     }
                 }
             ?></a>
