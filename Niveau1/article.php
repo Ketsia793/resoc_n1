@@ -1,7 +1,11 @@
 
     <article>
         <h3>
-            <time><?php echo $post['created'] ?></time>
+            <time>
+                <?php $date = date_create($post['created']);
+                setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
+                echo date_format($date, 'l d-m-Y H:i:s'); ?>
+            </time>
         </h3>
         <address>
             par <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a>
@@ -11,7 +15,7 @@
         </div>
         <footer>
             <small>♥ <?php echo $post['like_number'] ?> </small>
-            <a href=""><?php 
+            <a href="tags.php?tag_id=<?php echo $post['tag_id'] ?>"><?php 
 
                 if (! $post['taglist']) {
                     echo ("There is no #tag");
