@@ -66,7 +66,8 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
-                    users.alias as author_name, 
+                    users.alias as author_name,
+                    tags.id as tag_id,  
                     posts.user_id, 
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -94,33 +95,7 @@
 
                      ($post);
                     ?>                
-                    <article>
-                        <h3>
-                <?php $date = date_create($post['created']);
-                setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
-                echo date_format($date, 'l d-m-Y H:i:s'); ?>           
-                        </h3>
-                        <address><a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name']?></a>par AreTirer</address>
-                        <div>
-                            <?php echo $post['content']?>
-                        </div>                                            
-                        <footer>
-                            <small> <?php echo $post['like_number']?>♥ 132</small>
-                            
-                            <?php $alltags = $post['taglist'];
-                            $tag = explode(",", $alltags);
-        
-         for ($i = 0; $i < count($tag); $i++) {
-        if ($i == count($tag) - 1) {
-          echo ("#" . $tag[$i] . "");
-        } else {
-          echo ("#" . $tag[$i] . ", ");
-        }
-    }
-    ?>
-                        
-                        </footer>
-                    </article>
+                    <?php include 'article.php'?>
                 <?php } ?>
 
 
