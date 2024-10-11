@@ -34,7 +34,8 @@
                 $mysqli = connectToDatabase();
 
                 // Etape 2: Poser une question à la base de donnée et récupérer ses informations
-                $lesInformations = sqlStructure($retrieveNews, $mysqli);
+                // $lesInformations = sqlStructure($retrieveNews, $mysqli);
+                $lesInformations = sqlStructure(retrieveNewsPosts(), $mysqli);
 
                 // Etape 3: Parcourir ces données et les ranger bien comme il faut dans du html
                 // NB: à chaque tour du while, la variable post ci dessous reçois les informations du post suivant.

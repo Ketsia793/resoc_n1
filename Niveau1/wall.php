@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'connection.php';
+    include 'sql-structure.php';
 ?>
 
 <!doctype html>
@@ -30,11 +31,9 @@
 
             <aside>
                 <?php
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */                
-                $laQuestionEnSql = "SELECT * FROM users WHERE id = '$userId' ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
+                // Etape 3: récupérer le nom de l'utilisateur     
+                $lesInformations = sqlStructure(retrieveUserName($userId), $mysqli);
+
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
@@ -49,31 +48,18 @@
             </aside>
             <main>
                 <?php
+                include 'article-creation.php';
+
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
-                $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, posts.user_id,
-                    COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist,
-                    GROUP_CONCAT(DISTINCT tags.id) AS tag_idlist
-                    FROM posts
-                    JOIN users ON  users.id=posts.user_id
-                    LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
-                    LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
-                    LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE posts.user_id='$userId' 
-                    GROUP BY posts.id
-                    ORDER BY posts.created DESC  
-                    ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
+                $lesInformations = sqlStructure(retrieveWallPosts($userId), $mysqli);
 
                 // Vérification
                 if ( ! $lesInformations)
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
-
-                include 'article-creation.php';
 
                 // Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations->fetch_assoc())
