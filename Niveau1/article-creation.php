@@ -53,7 +53,6 @@
         } else
         {
             // echo "Message posté en tant que : " . $listAuteurs[$authorId];
-            // $_SESSION['connected_id']=$user['id'];
             header("Location: wall.php?user_id=" . $_GET['user_id']);
         }
     }
