@@ -73,11 +73,13 @@
                     echo("Échec de la requete : " . $mysqli->error);
                 }
 
+                include 'article-creation.php';
+
                 // Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
-                    ?>                
+                    ?>               
                     <?php 
                         include 'article.php';
                     ?>
