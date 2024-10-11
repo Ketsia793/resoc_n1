@@ -52,11 +52,13 @@
             echo "Impossible d'ajouter le message: " . $mysqli->error;
         } else
         {
-            echo "Message posté en tant que : " . $listAuteurs[$authorId];
+            // echo "Message posté en tant que : " . $listAuteurs[$authorId];
+            // $_SESSION['connected_id']=$user['id'];
+            header("Location: wall.php?user_id=" . $_GET['user_id']);
         }
     }
     ?>                     
-    <form action="usurpedpost.php" method="post">
+    <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">
         <dl>
             <dt><label for='auteur'>Auteur</label></dt>
             <dd><select name='auteur'>
