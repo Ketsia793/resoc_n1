@@ -64,6 +64,7 @@
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
+                    users.id as author_id,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
@@ -99,7 +100,7 @@
                     <h3>
                         <time datetime=<?php echo $post['created'] ?>><?php echo $post['created'] ?> </time>
                     </h3>
-                    <address>par <?php echo $post['author_name'] ?></address>
+                    <address> par <a href= <?php echo "wall.php?user_id=" . $post['author_id'] ?>>  <?php echo $post['author_name'] ?> </a> </address> 
                     <div>
                         <p><?php echo $post['content'] ?></p>
                          
