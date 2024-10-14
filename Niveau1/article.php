@@ -8,7 +8,10 @@
             </time>
         </h3>
         <address>
-            par <a href="wall.php?user_id=<?php echo $post['user_id'] ?>"><?php echo $post['author_name'] ?></a>
+            <?php 
+            echo "par <a href='wall.php?user_id=" .$post['user_id']."'> ".$post['author_name']."</a>";
+            ?>
+            
         </address>
         <div>
             <p><?php echo $post['content'] ?></p>
@@ -22,18 +25,27 @@
                     echo ("There is no #tag");
                 } else {
                     $alltags = $post['taglist'];
-                    $alltag_ids = $post['tag_idlist'];
+                    // $alltag_ids = $post['tag_idlist'];
                     $tag = explode(",", $alltags);
-                    $tag_id = explode(",", $alltag_ids);
+                    // $tag_id = explode(",", $alltag_ids);
 
                     // var_dump($alltag_ids);
                     // var_dump($post);
                 
                     for ($i = 0; $i < count($tag); $i++) {
+                        $laQuestionEnSql = "
+                    SELECT id FROM tags WHERE label = '$tag[$i]' 
+                    ";
+                $tagid_info = $mysqli->query($laQuestionEnSql);
+                if ( ! $tagid_info)
+                {
+                    echo("Échec de la requete : " . $mysqli->error);
+                }
+                     $tagid_querry = $tagid_info->fetch_assoc();
                         if ($i == count($tag) - 1) {
-                            ?><a href="tags.php?tag_id=<?php echo $tag_id[$i] ?>"><?php echo (" #" . $tag[$i] . "");
+                            ?><a href="tags.php?tag_id=<?php echo $tagid_querry ?>"><?php echo (" #" . $tag[$i] . "");
                         } else {
-                            ?><a href="tags.php?tag_id=<?php echo $tag_id[$i] ?>"><?php echo ("#" . $tag[$i] . ",");
+                            ?><a href="tags.php?tag_id=<?php echo $tagid_querry ?>"><?php echo ("#" . $tag[$i] . ",");
                         }
                     }
                 }
