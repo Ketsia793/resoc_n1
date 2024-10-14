@@ -80,13 +80,20 @@
                     ?>                     
                     <form action="registration.php" method="post">
                         <input type='hidden' name='???' value='achanger'>
+                        <form action="registration.php" method="post">
+                        <input type='hidden' name='???' value='achanger'>
                         <dl>
                             <dt><label for='pseudo'>Pseudo</label></dt>
-                            <dd><input type='text'name='pseudo'></dd>
+                            <dd><input type='text'name='pseudo' id="text" aria-describedby="text-id"></dd>
+                            <p id="text-id" aria-hidden="true">
+                            Votre pseudo doit comporter entre 3 et 15 caractères, et ne peut contenir que des lettres, des chiffres, et des underscores (_).
                             <dt><label for='email'>E-Mail</label></dt>
-                            <dd><input type='email'name='email'></dd>
+                            <dd><input type='email'name='email' id="email" aria-describedby="email-id"></dd>
+                            <p id="email-id" aria-hidden="true">
+                            veuillez saisir votre adresse mail.
                             <dt><label for='motpasse'>Mot de passe</label></dt>
-                            <dd><input type='password'name='motpasse'></dd>
+                            <dd><input type='password'name='motpasse' id='password'aria-describedby="password"></dd>
+                            Veuillez saisir votre mot de passe.
                         </dl>
                         <input type='submit'>
                     </form>

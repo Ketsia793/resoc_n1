@@ -86,10 +86,14 @@ session_start();
                     <form action="login.php" method="post">
                         <dl>
                             <dt><label for='email'>E-Mail</label></dt>
-                            <dd><input type='email'name='email'></dd>
-                            <dt><label for='motpasse'>Mot de passe</label></dt>
-                            <dd><input type='password'name='motpasse'></dd>
-                        </dl>
+                            <dd><input type='email'name='email' id="email" aria-describedby="email-id"></dd>
+                            <p id="email-id" aria-hidden="true">
+                            Veuillez entrer une adresse e-mail valide, par exemple utilisateur@domaine.com.                            </p>
+                            <dt><label for='motpasse'>Mot de passe</label></dt> 
+                            <dd><input type='password'name='motpasse' id="password" aria-desribedby="password-id"></dd>
+                            <p id="password-id" aria-hidden="true">
+                            Votre mot de passe doit contenir au moins 8 caractères, incluant une majuscule, une minuscule et un chiffre.
+                            </dl>
                         <input type='submit'>
                     </form>
                     <p>
