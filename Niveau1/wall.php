@@ -52,7 +52,10 @@ session_start();
             </aside>
             <main>
                 <?php
-                include 'article-creation.php';
+
+                if ($userId == $_SESSION['connected_id']) {
+                    include 'new-article.php';
+                } 
 
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
