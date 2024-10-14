@@ -11,11 +11,18 @@
         <a href="tags.php?tag_id=1">Mots-clés</a>
     </nav>
     <nav id="user">
+        <?php 
+            if (! isset($_SESSION['connected_id'])) { ?>
+                <a href="login.php">Se connecter</a>
+        <?php } 
+        else { ?>
+
         <a href="#">▾ Profil</a>
         <ul>
             <li><a href="settings.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Paramètres</a></li>
             <li><a href="followers.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mes suiveurs</a></li>
             <li><a href="subscriptions.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Mes abonnements</a></li>
         </ul>
+        <?php } ?>
     </nav>
 </header>
