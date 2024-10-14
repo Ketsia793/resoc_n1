@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'connection.php';
+    include 'sql-structure.php';
 ?>
 
 <!doctype html>

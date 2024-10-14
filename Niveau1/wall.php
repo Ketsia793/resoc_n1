@@ -25,7 +25,7 @@ session_start();
         <div id="wrapper">
             <?php
             // Etape 1: La première étape est de trouver quel est l'id de l'utilisateur, indiqué en parametre GET de la page sous la forme user_id=...
-            $userId =intval($_GET['user_id']);
+            $userId = intval($_GET['user_id']);
             ?>
             
             <?php

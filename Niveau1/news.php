@@ -6,6 +6,10 @@
     include 'sql-structure.php';
 ?>
 
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
