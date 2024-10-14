@@ -5,8 +5,7 @@
 
     // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
     $enCoursDeTraitement = isset($_POST['message']);
-    if ($enCoursDeTraitement && !empty($_POST['message']))
-    {
+    if ($enCoursDeTraitement && !empty($_POST['message'])) {
         // Etape 2: récupérer ce qu'il y a dans le formulaire 
         echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
@@ -39,6 +38,8 @@
             echo "Message posté en tant que : " . $listAuteurs[$authorId];
             header("Location: wall.php?user_id=" . $_GET['user_id']);
         }
+    } else {
+        echo ("Erreur : Entrer un message");
     }
     ?>                     
     <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">

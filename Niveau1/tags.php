@@ -1,3 +1,15 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+    include 'sql-structure.php';
+?>
+
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -9,7 +21,6 @@
     <body>
        
         <?php include 'header.php'; 
-            include 'connection.php';
         ?>
        
         <div id="wrapper">

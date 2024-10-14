@@ -13,7 +13,9 @@
         <p><?php echo $post['content'] ?></p>
     </div>
     <footer>
-        <small>♥ <?php echo $post['like_number'] ?> </small>
+        <button type="button" class="like-button">
+            <small>♥ <?php echo $post['like_number'] ?> </small>
+        </button>
         <!-- <a href=""> -->
             <?php 
 

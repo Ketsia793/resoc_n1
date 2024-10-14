@@ -1,3 +1,15 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+    include 'sql-structure.php';
+?>
+
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -29,7 +41,6 @@
             /**
              * Etape 2: se connecter à la base de donnée
              */
-            include 'connection.php';
             $mysqli = connectToDatabase();
             ?>
             
@@ -64,7 +75,7 @@
                     SELECT posts.content,
                     posts.created,
                     users.alias as author_name,  
-                    users.id as author_id,
+                    users.id as user_id,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
@@ -90,13 +101,12 @@
                 
                 while ($post = $lesInformations->fetch_assoc()){
                     ($post);
-                
-                
-
-
                 ?>              
                  
-                <article>
+                <?php 
+                    include 'article.php';
+                ?>
+                <!-- <article>
                     <h3>
                         <time datetime=<?php echo $post['created'] ?>><?php echo $post['created'] ?> </time>
                     </h3>
@@ -121,7 +131,7 @@
                         //  echo $post['taglist']
                          ?></a>
                     </footer>
-                </article>
+                </article> -->
                 <?php
                 }
                 ?>
