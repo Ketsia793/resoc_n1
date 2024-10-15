@@ -38,15 +38,14 @@
             echo "Message posté en tant que : " . $listAuteurs[$authorId];
             header("Location: wall.php?user_id=" . $_GET['user_id']);
         }
-    } else {
-        echo ("Erreur : Entrer un message");
     }
+
     ?>                     
     <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">
         <dl>
-            <dt><label for='message'>Message</label></dt>
-            <dd><textarea name='message'></textarea></dd>
+            <!-- <dt><label for='message'>Message</label></dt> -->
+            <dd><textarea type='text' name='message' rows='7' cols='60' placeholder="Write something..."></textarea></dd>
         </dl>
-        <input type='submit'>
+        <input type='submit' value='Publier'>
     </form>               
 </article>

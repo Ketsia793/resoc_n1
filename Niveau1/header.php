@@ -20,7 +20,6 @@
                 <a href="login.php">Se connecter</a>
         <?php } 
         else { ?>
-
         <a href="#">▾ Profil</a>
         <ul>
             <li><a href="settings.php?user_id=<?php echo $_SESSION['connected_id'] ?>">Paramètres</a></li>

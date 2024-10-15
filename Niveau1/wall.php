@@ -48,6 +48,13 @@ session_start();
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
                         (n° <?php echo $userId ?>)
                     </p>
+
+                <?php 
+                    if ($_GET['user_id'] !== $_SESSION['connected_id']) { ?>
+                        <input type="button" value="Suivre">
+                <?php } ?>
+
+
                 </section>
             </aside>
             <main>

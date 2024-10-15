@@ -1,3 +1,15 @@
+<?php 
+    error_reporting(-1);
+    ini_set( 'display_errors', 1 );
+
+    include 'connection.php';
+    include 'sql-structure.php';
+?>
+
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -27,9 +39,7 @@
                 // Etape 1: récupérer l'id de l'utilisateur
                 $userId = intval($_GET['user_id']);
                 
-                
                 // Etape 2: se connecter à la base de donnée
-                include 'connection.php';
                 $mysqli = connectToDatabase();
                 
                 // Etape 3: récupérer le nom de l'utilisateur

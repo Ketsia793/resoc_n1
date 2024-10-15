@@ -1,9 +1,12 @@
 <article>
     <h3>
         <time>
-            <?php $date = date_create($post['created']);
-            setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
-            echo date_format($date, 'l d-m-Y H:i:s'); ?>
+            <?php 
+                $date = date_create($post['created']);
+                setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
+                echo date_format($date, '\L\e d/m/Y \à H\hi');  
+            ?>
+
         </time>
     </h3>
     <address>
