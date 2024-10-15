@@ -18,17 +18,18 @@
     <footer>
         <small>
             <?php 
+                // echo ("🦄" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+                // var_dump ($post);
+                // echo ($post['post_id']);
+
                 $enCoursLike = isset($_POST['like']);
                 if ($enCoursLike) {
-                    $postId = $post['id'];
+                    $postId = $post['post_id'];
                     
                     $lesInformations = sqlStructure(insertNewLike($_SESSION['connected_id'], $postId), $mysqli);
-                    
-                    // header("Location: " . $_SERVER['HTTP_REFERER']);
-                    // exit();
                 }
             ?>
-            <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
+            <form action="<?php $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" method="post">
                 <input type='hidden' name='like' value='true'>
                 <input type='submit' value='♥ <?php echo $post['like_number'] ?>'>
             </form> 

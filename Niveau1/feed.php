@@ -54,10 +54,10 @@ session_start();
             <main>
                 <?php
                 // Etape 3: récupérer tous les messages des abonnements
-                $lesInformations = sqlStructure(retrieveFeedPosts($userId), $mysqli);
+                $lesInformations2 = sqlStructure(retrieveFeedPosts($userId), $mysqli);
                 
                 // Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                while ($post = $lesInformations->fetch_assoc())
+                while ($post = $lesInformations2->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>

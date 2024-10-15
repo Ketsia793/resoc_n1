@@ -36,9 +36,9 @@ session_start();
             <aside>
                 <?php
                 // Etape 3: récupérer le nom de l'utilisateur     
-                $lesInformations = sqlStructure(retrieveUserName($userId), $mysqli);
+                $lesInformations2 = sqlStructure(retrieveUserName($userId), $mysqli);
 
-                $user = $lesInformations->fetch_assoc();
+                $user = $lesInformations2->fetch_assoc();
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>

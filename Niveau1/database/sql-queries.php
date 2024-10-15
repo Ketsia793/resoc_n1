@@ -25,7 +25,7 @@ function retrieveUserName($userId) {
 function retrieveNewsPosts() {
     $posts = "
         SELECT posts.content,
-        posts.id,
+        posts.id as post_id,
         posts.created,
         users.alias as author_name,  
         posts.user_id,
@@ -47,7 +47,7 @@ function retrieveNewsPosts() {
 // Récupérer les infos de la page wall.php 
 function retrieveWallPosts($userId) {
     $posts = "
-        SELECT posts.content, posts.created, users.alias as author_name, posts.user_id,
+        SELECT posts.content, posts.created, posts.id as post_id, users.alias as author_name, posts.user_id,
         COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist,
         GROUP_CONCAT(DISTINCT tags.id) AS tag_idlist
         FROM posts
@@ -67,6 +67,7 @@ function retrieveFeedPosts($userId) {
     $posts = "
         SELECT posts.content,
         posts.created,
+        posts.id as post_id,
         users.alias as author_name,  
         users.id as user_id,
         count(likes.id) as like_number,  
@@ -103,7 +104,7 @@ function insertNewUser($new_email, $new_alias, $new_passwd) {
 
 
 // Insertion des nouveaux posts (table new-article.php)
-function insertNewPost() {
+function insertNewPost($authorId, $postContent) {
     $newPost = "
         INSERT INTO posts "
         . "(id, user_id, content, created, parent_id) "

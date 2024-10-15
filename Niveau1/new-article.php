@@ -1,13 +1,13 @@
 
 <article>
-    <h2>Poster un message sur mon mur</h2>
+    <h2>Poster un nouveau message</h2>
     <?php
 
     // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
     $enCoursDeTraitement = isset($_POST['message']);
     if ($enCoursDeTraitement && !empty($_POST['message'])) {
         // Etape 2: récupérer ce qu'il y a dans le formulaire 
-        echo "<pre>" . print_r($_POST, 1) . "</pre>";
+        // echo "<pre>" . print_r($_POST, 1) . "</pre>";
 
         $authorId = $_SESSION['connected_id'];
         $postContent = $_POST['message'];
@@ -18,7 +18,7 @@
         $postContent = $mysqli->real_escape_string($postContent);
 
         //Etape 4 : construction de la requete
-        $lesInformations = sqlStructure(insertNewPost(), $mysqli);
+        $lesInformations = sqlStructure(insertNewPost($authorId, $postContent), $mysqli);
     }
 
     ?>                     
