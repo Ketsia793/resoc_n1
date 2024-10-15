@@ -2,8 +2,8 @@
     error_reporting(-1);
     ini_set( 'display_errors', 1 );
 
-    include 'connection.php';
-    include 'sql-structure.php';
+    include 'database/connection.php';
+    include 'database/sql-queries.php';
 ?>
 
 <?php
@@ -16,7 +16,7 @@ session_start();
         <meta charset="utf-8">
         <title>ReSoC - Les message par mot-clé</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style/style.css"/>
     </head>
     <body>
        

@@ -2,8 +2,8 @@
     error_reporting(-1);
     ini_set( 'display_errors', 1 );
 
-    include 'connection.php';
-    include 'sql-structure.php';
+    include 'database/connection.php';
+    include 'database/sql-queries.php';
 ?>
 
 <?php
@@ -16,7 +16,7 @@ session_start();
         <meta charset="utf-8">
         <title>ReSoC - Mur</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style/style.css"/>
     </head>
     <body>
         <?php 
@@ -39,7 +39,6 @@ session_start();
                 $lesInformations = sqlStructure(retrieveUserName($userId), $mysqli);
 
                 $user = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
@@ -49,14 +48,31 @@ session_start();
                         (n° <?php echo $userId ?>)
                     </p>
 
+                <!-- ---------- MON CODE ---------- -->
                 <?php 
-                    if ($_GET['user_id'] !== $_SESSION['connected_id']) { ?>
-                        <input type="button" value="Suivre">
+                // echo ('🐝' . $_SESSION['connected_id']);
+                // echo ('🐞' . $_GET['user_id']);
+                
+                if ($_GET['user_id'] !== $_SESSION['connected_id']) { 
+                
+                    $enCoursFollow = isset($_POST['follow']);
+                    if ($enCoursFollow) {
+                        $lesInformations = sqlStructure(insertNewSubscription($userId, $_SESSION['connected_id']), $mysqli);
+                    }
+                ?>
+                <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">
+                    <input type='hidden' name='follow' value='true'>
+                    <?php if ($enCoursFollow) { ?>
+                        <input type='submit' value='Ne plus suivre'>
+                    <?php } else { ?>
+                        <input type='submit' value='Suivre +'>
+                    <?php } ?>
+                </form> 
                 <?php } ?>
-
-
-                </section>
-            </aside>
+                
+                <!-- ---------- FIN DE MON CODE ---------- -->
+            </section>
+        </aside>
             <main>
                 <?php
 
@@ -64,18 +80,10 @@ session_start();
                     include 'new-article.php';
                 } 
 
-                /**
-                 * Etape 3: récupérer tous les messages de l'utilisatrice
-                 */
+                // Etape 3: récupérer tous les messages de l'utilisatrice
                 $lesInformations = sqlStructure(retrieveWallPosts($userId), $mysqli);
 
-                // Vérification
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
-
-                // Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";

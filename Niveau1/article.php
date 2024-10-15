@@ -16,12 +16,25 @@
         <p><?php echo $post['content'] ?></p>
     </div>
     <footer>
-        <button type="button" class="like-button">
-            <small>♥ <?php echo $post['like_number'] ?> </small>
-        </button>
-        <!-- <a href=""> -->
+        <small>
             <?php 
+                $enCoursLike = isset($_POST['like']);
+                if ($enCoursLike) {
+                    $postId = $post['id'];
+                    
+                    $lesInformations = sqlStructure(insertNewLike($_SESSION['connected_id'], $postId), $mysqli);
+                    
+                    // header("Location: " . $_SERVER['HTTP_REFERER']);
+                    // exit();
+                }
+            ?>
+            <form action="<?php $_SERVER['REQUEST_URI'] ?>" method="post">
+                <input type='hidden' name='like' value='true'>
+                <input type='submit' value='♥ <?php echo $post['like_number'] ?>'>
+            </form> 
+        </small>
 
+        <?php 
             if (! $post['taglist']) {
                 echo ("There is no #tag" . $mysqli->error);
             } else {
@@ -49,6 +62,5 @@
                 }
             }
         ?>
-        <!-- </a> -->
     </footer>
 </article>

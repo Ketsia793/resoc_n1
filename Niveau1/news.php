@@ -2,8 +2,8 @@
     error_reporting(-1);
     ini_set( 'display_errors', 1 );
 
-    include 'connection.php';
-    include 'sql-structure.php';
+    include 'database/connection.php';
+    include 'database/sql-queries.php';
 ?>
 
 <?php
@@ -16,7 +16,7 @@ session_start();
         <meta charset="utf-8">
         <title>ReSoC - Actualités</title> 
         <meta name="author" content="Julien Falconnet">
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style/style.css"/>
     </head>
     <body>
         <?php 
@@ -27,8 +27,7 @@ session_start();
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages de
-                        tous les utilisatrices du site.</p>
+                    <p>Sur cette page vous trouverez les derniers messages de tous les utilisatrices du site.</p>
                 </section>
             </aside>
             <main>

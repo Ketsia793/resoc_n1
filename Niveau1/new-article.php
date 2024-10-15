@@ -18,33 +18,14 @@
         $postContent = $mysqli->real_escape_string($postContent);
 
         //Etape 4 : construction de la requete
-        $lInstructionSql = "INSERT INTO posts "
-                . "(id, user_id, content, created, parent_id) "
-                . "VALUES (NULL, "
-                . $authorId . ", "
-                . "'" . $postContent . "', "
-                . "NOW(), "
-                . "NULL);"
-                ;
-        echo "<pre>" . $lInstructionSql . "</pre>";
-
-        // Etape 5 : execution
-        $ok = $mysqli->query($lInstructionSql);
-        if ( ! $ok)
-        {
-            echo "Impossible d'ajouter le message: " . $mysqli->error;
-        } else
-        {
-            echo "Message posté en tant que : " . $listAuteurs[$authorId];
-            header("Location: wall.php?user_id=" . $_GET['user_id']);
-        }
+        $lesInformations = sqlStructure(insertNewPost(), $mysqli);
     }
 
     ?>                     
     <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">
         <dl>
             <!-- <dt><label for='message'>Message</label></dt> -->
-            <dd><textarea type='text' name='message' rows='7' cols='60' placeholder="Write something..."></textarea></dd>
+            <dd><textarea type='text' name='message' rows='4' cols='98' placeholder="Write something..."></textarea></dd>
         </dl>
         <input type='submit' value='Publier'>
     </form>               
