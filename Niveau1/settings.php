@@ -43,31 +43,15 @@ session_start();
 
                 // Etape 2: se connecter à la base de donnée
                 $mysqli = connectToDatabase();
-                 
-                // Etape 3: récupérer le nom de l'utilisateur
-                $laQuestionEnSql = "
-                    SELECT users.*, 
-                    count(DISTINCT posts.id) as totalpost, 
-                    count(DISTINCT given.post_id) as totalgiven, 
-                    count(DISTINCT recieved.user_id) as totalrecieved 
-                    FROM users 
-                    LEFT JOIN posts ON posts.user_id=users.id 
-                    LEFT JOIN likes as given ON given.user_id=users.id 
-                    LEFT JOIN likes as recieved ON recieved.post_id=posts.id 
-                    WHERE users.id = '$userId' 
-                    GROUP BY users.id
-                    ";
+                    
+                // Etape 3: récupérer les infos de l'utilisateur
+                $userInfo = sqlStructure(retrieveUserInfo($userId), $mysqli);
 
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-                if ( ! $lesInformations)
-                {
-                    echo("Échec de la requete : " . $mysqli->error);
-                }
-                $user = $lesInformations->fetch_assoc();
-
+                $user = $userInfo->fetch_assoc();
                 // Etape 4: Remplacer les valeurs par les résultats de la requête
                 ($user);
-                ?>                
+                ?>  
+
                 <article class='parameters'>
                     <h3>Mes paramètres</h3>
                     <dl>
@@ -82,7 +66,6 @@ session_start();
                         <dt>Nombre de "Jaime" reçus</dt>
                         <dd><?php echo $user['totalrecieved']?></dd>
                     </dl>
-
                 </article>
             </main>
         </div>

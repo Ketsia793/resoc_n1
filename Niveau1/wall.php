@@ -37,9 +37,9 @@ session_start();
             <aside>
                 <?php
                 // Etape 3: récupérer le nom de l'utilisateur     
-                $lesInformations2 = sqlStructure(retrieveUserName($userId), $mysqli);
+                $userInfos = sqlStructure(retrieveUserName($userId), $mysqli);
 
-                $user = $lesInformations2->fetch_assoc();
+                $user = $userInfos->fetch_assoc();
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="images/user.jpg" alt="Portrait de l'utilisatrice"/>
@@ -78,14 +78,13 @@ session_start();
                     include 'new-article.php';
                 } 
 
-
                 // Etape 3: récupérer tous les messages de l'utilisatrice
-                $lesInformations2 = sqlStructure(retrieveWallPosts($userId), $mysqli);
+                $allPosts = sqlStructure(retrieveWallPosts($userId), $mysqli);
 
                 include 'like.php';
 
                 // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                while ($post = $lesInformations2->fetch_assoc())
+                while ($post = $allPosts->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>               

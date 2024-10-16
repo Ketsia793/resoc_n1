@@ -41,6 +41,7 @@
                             echo "Invalid email address.";
                         }
                     }
+
                     function validatePseudo($pseudo) {
                         if (isset($_POST['pseudo'])) {
                             if (preg_match('#^[a-zA-Z0-9.-_]{3,20}$#', $_POST['pseudo'])) { // Contrôle que le pseudo contient 3 à 20 caractères
@@ -52,7 +53,6 @@
                         }
                         return false; // Retourne 'false' si 'pseudo' n'est pas défini dans le formulaire
                     }
-
                     
                     // Etape 1 : vérifier si on est en train d'afficher ou de traiter le formulaire
                     // si on recoit un champs email rempli il y a une chance que ce soit un traitement
@@ -78,23 +78,17 @@
 
                         //Etape 5 : construction de la requete
                         if (validateEmail($_POST['email']) && validatePseudo($_POST['pseudo'])) {
-                            $lesInformations = sqlStructure(insertNewUser($new_email, $new_alias, $new_passwd), $mysqli);
+                        $newUser = sqlStructure(insertNewUser($new_email, $new_alias, $new_passwd), $mysqli);
 
                             // Vérification
-                            if (! $lesInformations && ! $_POST['pseudo']) {
+                            if (! $newUser && ! $_POST['pseudo']) {
                                 echo("Échec de la requete : " . $mysqli->error);
                             } else {
                                 echo "Votre inscription est un succès " . $new_alias . ".";
                                 header("Location: login.php");
                                 exit();
-                                // echo " <a href='login.php'>Connectez-vous ici.</a>";
-                                
-                            };
-
-                            // if (! $_POST['pseudo']) {
-                            //     echo 'Le pseudo doit contenir entre 3 et 20 caractères, sans espace.<br/>';
-                            // } 
-                        };
+                            }
+                        }
                     }
                     ?>                     
                     <form action="registration.php" method="post">

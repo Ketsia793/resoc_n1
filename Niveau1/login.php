@@ -62,15 +62,17 @@ session_start();
 
                         // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
                         //Etape 5 : construction de la requete
-                        $lInstructionSql = "SELECT * "
-                                . "FROM users "
-                                . "WHERE "
-                                . "email LIKE '" . $emailAVerifier . "'"
-                                ;
+                        $userLoginInfo = sqlStructure(retrieveLoginInfo($emailAVerifier), $mysqli);
+
+                        // $lInstructionSql = "SELECT * "
+                        //         . "FROM users "
+                        //         . "WHERE "
+                        //         . "email LIKE '" . $emailAVerifier . "'"
+                        //         ;
+                        // $res = $mysqli->query($lInstructionSql);
                                 
                         // Etape 6: Vérification de l'utilisateur
-                        $res = $mysqli->query($lInstructionSql);
-                        $user = $res->fetch_assoc();
+                        $user = $userLoginInfo->fetch_assoc();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
                             echo "Veuillez vérifier votre adresse e-mail et/ou votre mot de passe.";

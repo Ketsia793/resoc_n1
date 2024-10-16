@@ -37,14 +37,14 @@ session_start();
                     $mysqli = connectToDatabase();
 
                     // Etape 2: Poser une question à la base de donnée et récupérer ses informations
-                    $lesInformations2 = sqlStructure(retrieveNewsPosts(), $mysqli);
+                    $allPosts = sqlStructure(retrieveNewsPosts(), $mysqli);
 
                     include 'like.php';
 
                     // Etape 3: A chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
-                    while ($post = $lesInformations2->fetch_assoc()) {
+                    while ($post = $allPosts->fetch_assoc()) {
                         // echo "<pre>" . print_r($post, 1) . "</pre>";
-                            include 'article.php';
+                        include 'article.php';
                     }
                 ?>
             </main>

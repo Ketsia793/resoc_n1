@@ -2,6 +2,15 @@
 
 // ---------- RETRIEVE REQUESTS ---------- // 
 
+// Vérifier les infos utilisateurs dans login.php
+function retrieveLoginInfo($emailAVerifier) {
+    $loginInfo = "SELECT * "
+        . "FROM users "
+        . "WHERE "
+        . "email LIKE '" . $emailAVerifier . "'";
+    return $loginInfo;
+}
+
 // Récupérer les infos des tags dans admin.php
 function retrieveTag() {
     $tags = "SELECT * FROM `tags` LIMIT 50";
@@ -30,6 +39,35 @@ function retrieveFollowersInfo($userId) {
         GROUP BY users.id
         ";
     return $followersInfo;
+}
+
+// Récupérer les infos de l'utilisateur dans settings.php
+function retrieveUserInfo($userId) {
+    $userInfo = "
+        SELECT users.*, 
+        count(DISTINCT posts.id) as totalpost, 
+        count(DISTINCT given.post_id) as totalgiven, 
+        count(DISTINCT recieved.user_id) as totalrecieved 
+        FROM users 
+        LEFT JOIN posts ON posts.user_id=users.id 
+        LEFT JOIN likes as given ON given.user_id=users.id 
+        LEFT JOIN likes as recieved ON recieved.post_id=posts.id 
+        WHERE users.id = '$userId' 
+        GROUP BY users.id
+        ";
+    return $userInfo;
+}
+
+// Récupérer le nom de mes abonnements dans subscriptions.php 
+function retrieveFollowedInfo($userId) {
+    $followedUsersInfo = "
+        SELECT users.* 
+        FROM followers 
+        LEFT JOIN users ON users.id=followers.followed_user_id 
+        WHERE followers.following_user_id='$userId'
+        GROUP BY users.id
+        ";
+    return $followedUsersInfo;
 }
 
 // Récupérer les infos de la page news.php
@@ -96,6 +134,34 @@ function retrieveFeedPosts($userId) {
     return $posts;
 }
 
+// Récupérer le nom du mot-clé dans tags.php
+function retrieveTagById($tagId) {
+    $tagInfo = "SELECT * FROM tags WHERE id= '$tagId' ";
+    return $tagInfo;
+}
+
+// Récupérer tous les messages avec un mot clé donné dans tags.php 
+function retrievePostByTags($tagId) {
+    $posts= "
+        SELECT posts.content,
+        posts.created,
+        posts.user_id,
+        posts.id as post_id,
+        users.alias as author_name,  
+        count(likes.id) as like_number,  
+        GROUP_CONCAT(DISTINCT tags.label) AS taglist 
+        FROM posts_tags as filter 
+        JOIN posts ON posts.id=filter.post_id
+        JOIN users ON users.id=posts.user_id
+        LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
+        LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
+        LEFT JOIN likes      ON likes.post_id  = posts.id 
+        WHERE filter.tag_id = '$tagId' 
+        GROUP BY posts.id
+        ORDER BY posts.created DESC  
+        ";
+    return $posts;
+}
 
 // ---------- INSERT REQUESTS ---------- // 
 

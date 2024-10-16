@@ -44,18 +44,11 @@ session_start();
                 // Etape 2: se connecter à la base de donnée
                 $mysqli = connectToDatabase();
 
-                // Etape 3: récupérer le nom de l'utilisateur
-                $laQuestionEnSql = "
-                    SELECT users.* 
-                    FROM followers 
-                    LEFT JOIN users ON users.id=followers.followed_user_id 
-                    WHERE followers.following_user_id='$userId'
-                    GROUP BY users.id
-                    ";
-                $lesInformations = $mysqli->query($laQuestionEnSql);
-
+                // Etape 3: récupérer le nom de mes abonnements
+                $followedUsers  = sqlStructure(retrieveFollowedInfo($userId),$mysqli);
+                
                 // Etape 4: la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
-                while ($followed = $lesInformations->fetch_assoc()) 
+                while ($followed = $followedUsers->fetch_assoc()) 
                 {
                     // echo "<pre>" . print_r($followed, 1) . "</pre>";
                     ?>
