@@ -21,7 +21,7 @@ session_start();
     </head>
     <body>
        
-        <?php include 'header.php'; 
+        <?php include 'partials/header.php'; 
         ?>
        
         <div id="wrapper">
@@ -58,14 +58,14 @@ session_start();
                 // Etape 4: récupérer tous les messages avec un mot clé donné
                 $postsByTag = sqlStructure(retrievePostByTags($tagId), $mysqli);
 
-                include 'like.php';
+                include 'partials/like.php';
               
                 // Etape 5: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $postsByTag->fetch_assoc())
                 {
                      ($post);
                     ?>                
-                    <?php include 'article.php'?>
+                    <?php include 'partials/article.php'?>
                 <?php } ?>
 
 

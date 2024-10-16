@@ -21,7 +21,7 @@ session_start();
     </head>
     <body>
         <?php 
-        include 'header.php';
+        include 'partials/header.php';
         ?>
         <div id="wrapper">
             <aside>
@@ -39,12 +39,12 @@ session_start();
                     // Etape 2: Poser une question à la base de donnée et récupérer ses informations
                     $allPosts = sqlStructure(retrieveNewsPosts(), $mysqli);
 
-                    include 'like.php';
+                    include 'partials/like.php';
 
                     // Etape 3: A chaque tour du while, la variable post ci dessous reçois les informations du post suivant.
                     while ($post = $allPosts->fetch_assoc()) {
                         // echo "<pre>" . print_r($post, 1) . "</pre>";
-                        include 'article.php';
+                        include 'partials/article.php';
                     }
                 ?>
             </main>

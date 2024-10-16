@@ -17,7 +17,7 @@
     </head>
     <body>
         <?php 
-        include 'header.php';
+        include 'partials/header.php';
         ?>
         <div id="wrapper" >
 

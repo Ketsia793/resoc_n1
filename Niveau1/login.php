@@ -21,7 +21,7 @@ session_start();
     </head>
     <body>
         <?php 
-        include 'header.php';
+        include 'partials/header.php';
         ?>
         <div id="wrapper" >
 
@@ -58,21 +58,15 @@ session_start();
                         $passwdAVerifier = $mysqli->real_escape_string($passwdAVerifier);
 
                         // on crypte le mot de passe pour éviter d'exposer notre utilisatrice en cas d'intrusion dans nos systèmes
+                        // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
                         $passwdAVerifier = md5($passwdAVerifier);
 
-                        // NB: md5 est pédagogique mais n'est pas recommandée pour une vraies sécurité
                         //Etape 5 : construction de la requete
                         $userLoginInfo = sqlStructure(retrieveLoginInfo($emailAVerifier), $mysqli);
 
-                        // $lInstructionSql = "SELECT * "
-                        //         . "FROM users "
-                        //         . "WHERE "
-                        //         . "email LIKE '" . $emailAVerifier . "'"
-                        //         ;
-                        // $res = $mysqli->query($lInstructionSql);
-                                
                         // Etape 6: Vérification de l'utilisateur
                         $user = $userLoginInfo->fetch_assoc();
+
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
                             echo "Veuillez vérifier votre adresse e-mail et/ou votre mot de passe.";

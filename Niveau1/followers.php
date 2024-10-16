@@ -21,7 +21,7 @@ session_start();
     </head>
     <body>
     <?php 
-        include 'header.php';
+        include 'partials/header.php';
         ?>
         </header>
         <div id="wrapper">          

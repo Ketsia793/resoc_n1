@@ -22,7 +22,7 @@ session_start();
     <body>
 
         <?php 
-        include 'header.php';
+        include 'partials/header.php';
         ?>
 
         <div id="wrapper">
@@ -57,7 +57,7 @@ session_start();
                 // Etape 3: récupérer tous les messages des abonnements
                 $allPosts = sqlStructure(retrieveFeedPosts($userId), $mysqli);
                 
-                include 'like.php';
+                include 'partials/like.php';
                 
                 // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $allPosts->fetch_assoc())
@@ -65,7 +65,7 @@ session_start();
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>
                     <?php 
-                        include 'article.php';
+                        include 'partials/article.php';
                     ?>
                 <?php
                 }
