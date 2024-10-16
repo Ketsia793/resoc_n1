@@ -17,11 +17,7 @@
     </div>
     <footer>
         <small>
-            <form action="<?php $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" method="post">
-                <input type='hidden' name='like' value='false'>
-                <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
-                <input type="submit" value="♥ <?php echo $post['like_number'] ?>">
-            </form> 
+            <?php include 'new-likes.php'; ?>
         </small>
 
         <?php 

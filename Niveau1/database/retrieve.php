@@ -11,9 +11,9 @@ function sqlStructure($sqlQuery, $mysqli) {
     {
         echo("Échec de la requete : " . $mysqli->error);
     } 
-    else {
-        echo "Succès";
-    }
+    // else {
+    //     echo "Succès";
+    // }
     return $lesInformations;
 }
 

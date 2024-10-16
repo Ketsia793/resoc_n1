@@ -219,4 +219,28 @@ function insertNewLike($userId, $postId) {
     return $newLike;
 }
 
+// ---------- GESTION DES LIKES ---------- //
+
+function addLike($userId, $postId) {
+    $addLikeQuerry = 
+        "INSERT INTO likes "
+        . "(id, user_id, post_id) "
+        . "VALUES (NULL, '"
+        . $userId . "', "
+        . "'" . $postId . "');"
+        ;
+    return $addLikeQuerry;
+}
+
+function didLike($userId, $postId) {
+    $didLikeQuery = "SELECT * FROM likes WHERE likes.user_id = ".$userId." AND likes.post_id = ".$postId.";";
+    return $didLikeQuery;
+}
+
+function removeLike($userId,$postId){
+    $removeLikeQuery = "DELETE FROM likes WHERE likes.user_id = ".$userId." AND likes.post_id = ".$postId.";";
+    return $removeLikeQuery;
+}
+
 ?>
+
