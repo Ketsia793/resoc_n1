@@ -5,10 +5,10 @@
 <header>
     <?php 
         if (! isset($_SESSION['connected_id'])) { ?>
-            <a href='login.php'><img src="resoc.jpg" alt="Logo de notre réseau social" /></a>
+            <a href='login.php'><img src="images/resoc.jpg" alt="Logo de notre réseau social" /></a>
     <?php } 
         else { ?> 
-            <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social" /></a>
+            <a href='admin.php'><img src="images/resoc.jpg" alt="Logo de notre réseau social" /></a>
             <?php } ?>
 
     <nav id="menu">
