@@ -1,28 +1,35 @@
 <?php 
 
-// --- 1 fichier retrieve
-// function sqlStructure($sqlQuery, $mysqli) {
-    // $laQuestionEnSql = $sqlQuery;
-    // $lesInformations = $mysqli->query($sqlQuery);
-
-    // Vérification
-    // if ( ! $lesInformations)
-    // {
-    //     echo("Échec de la requete : " . $mysqli->error);
-    // } else {
-    //     echo "Votre inscription est un succès " . $new_alias . ".";
-    //     echo " <a href='login.php'>Connectez-vous.</a>";
-    // }
-    // return $lesInformations;
-// }
-
-
 // ---------- RETRIEVE REQUESTS ---------- // 
+
+// Récupérer les infos des tags dans admin.php
+function retrieveTag() {
+    $tags = "SELECT * FROM `tags` LIMIT 50";
+    return $tags;
+}
 
 // Récupérer le user_name dans wall.php, feed.php
 function retrieveUserName($userId) {
     $UserName = "SELECT * FROM users WHERE id = '$userId'";
     return $UserName;
+}
+
+// Récupérer les infos des utilisatrices dans admin.php
+function retrieveUsersInfo() {
+    $usersInfo = "SELECT * FROM `users` LIMIT 50";
+    return $usersInfo;
+}
+
+// Récupérer le nom des abonnés dans followers.php
+function retrieveFollowersInfo($userId) {
+    $followersInfo = "
+        SELECT users.*
+        FROM followers
+        LEFT JOIN users ON users.id=followers.following_user_id
+        WHERE followers.followed_user_id='$userId'
+        GROUP BY users.id
+        ";
+    return $followersInfo;
 }
 
 // Récupérer les infos de la page news.php

@@ -26,37 +26,23 @@ session_start();
        
         <div id="wrapper">
             <?php
-            /**
-             * Cette page est similaire à wall.php ou feed.php 
-             * mais elle porte sur les mots-clés (tags)
-             */
-            /**
-             * Etape 1: Le mur concerne un mot-clé en particulier
-             */
-            // echo 'tag_id : ' . htmlspecialchars($_GET['tag_id']);
-            // if (isset($_GET['tag_id'])) {
-            //     echo 'la variable $tag_id existe';
-            //  } else {
-            //     echo 'la variable $tag_id nexiste pas : Erreur';
-            // }
+            
+            // Etape 1: Le mur concerne un mot-clé en particulier
             $tagId = $_GET['tag_id'];
             
             ?>
             <?php
-            /**
-             * Etape 2: se connecter à la base de donnée
-             */
+            
+            // Etape 2: se connecter à la base de donnée
             $mysqli = connectToDatabase();
             ?>
             <aside>
                 <?php
-                /**
-                 * Etape 3: récupérer le nom du mot-clé
-                 */
+                
+                // Etape 3: récupérer le nom du mot-clé
                 $laQuestionEnSql = "SELECT * FROM tags WHERE id= '$tagId' ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $tag = $lesInformations->fetch_assoc();
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
                 
                 ($tag);
                 ?>
@@ -72,9 +58,8 @@ session_start();
             </aside>
             <main>
                 <?php
-                /**
-                 * Etape 3: récupérer tous les messages avec un mot clé donné
-                 */
+                
+                // Etape 4: récupérer tous les messages avec un mot clé donné
                 $laQuestionEnSql = "
                     
                     SELECT posts.content,
@@ -103,9 +88,7 @@ session_start();
 
                 include 'like.php';
               
-                /**
-                 * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                 */
+                // Etape 5: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations->fetch_assoc())
                 {
 

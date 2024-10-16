@@ -37,9 +37,9 @@ session_start();
             <aside>
                 <?php
                 // Etape 3: récupérer le nom de l'utilisateur
-                $lesInformations = sqlStructure(retrieveUserName($userId), $mysqli);
+                $usersInfo = sqlStructure(retrieveUserName($userId), $mysqli);
 
-                $user = $lesInformations->fetch_assoc();
+                $user = $usersInfo->fetch_assoc();
                 // echo "<pre>" . print_r($user, 5) . "</pre>";
                 ?>
                 <img src="images/user.jpg" alt="Portrait de l'utilisatrice"/>
@@ -59,7 +59,7 @@ session_start();
                 
                 include 'like.php';
                 
-                // Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
+                // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $lesInformations2->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";

@@ -53,8 +53,8 @@ session_start();
                     GROUP BY users.id
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
-                // Etape 4: à vous de jouer
-                //@todo: faire la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
+
+                // Etape 4: la boucle while de parcours des abonnés et mettre les bonnes valeurs ci dessous 
                 while ($followed = $lesInformations->fetch_assoc()) 
                 {
                     // echo "<pre>" . print_r($followed, 1) . "</pre>";

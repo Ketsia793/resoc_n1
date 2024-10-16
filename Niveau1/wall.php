@@ -51,9 +51,6 @@ session_start();
 
                 <!-- ---------- Suivre une autre utilisatrice ---------- -->
                 <?php 
-                // echo ('🐝' . $_SESSION['connected_id']);
-                // echo ('🐞' . $_GET['user_id']);
-                
                 if ($_GET['user_id'] !== $_SESSION['connected_id']) { 
                 
                     $enCoursFollow = isset($_POST['follow']);
