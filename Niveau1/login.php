@@ -26,12 +26,19 @@ session_start();
 
             <aside>
                 <h2>Présentation</h2>
-                <p>Bienvenu sur notre réseau social.</p>
+                <p>Bienvenue sur notre réseau social.</p>
             </aside>
             <main>
                 <article>
-                    <h2>Connexion</h2>
-                    <?php
+                    <?php 
+                    // Vérification si la variable HTTP_REFERER est définie et contient "registration.php"
+                    if (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], "registration.php") !== false) { ?>
+                        <h2>Votre inscription est un succès. Connectez-vous !</h2>
+                    <?php  
+                    } else { ?>
+                        <h2>Connexion</h2>
+                    <?php } 
+                    
                     /**
                      * TRAITEMENT DU FORMULAIRE
                      */
@@ -43,7 +50,7 @@ session_start();
                         // on ne fait ce qui suit que si un formulaire a été soumis.
                         // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
                         // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
-                        echo "<pre>" . print_r($_POST, 1) . "</pre>";
+                        // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
                         $emailAVerifier = $_POST['email'];
                         $passwdAVerifier = $_POST['motpasse'];
@@ -70,7 +77,7 @@ session_start();
                         $user = $res->fetch_assoc();
                         if ( ! $user OR $user["password"] != $passwdAVerifier)
                         {
-                            echo "La connexion a échouée. ";
+                            echo "Veuillez vérifier votre adresse e-mail et/ou votre mot de passe.";
                             
                         } else
                         {
@@ -88,11 +95,9 @@ session_start();
                             <dt><label for='email'>E-Mail</label></dt>
                             <dd><input type='email'name='email' id="email" aria-describedby="email-id"></dd>
                             <p id="email-id" aria-hidden="true">
-                            Veuillez entrer une adresse e-mail valide, par exemple utilisateur@domaine.com.                            </p>
                             <dt><label for='motpasse'>Mot de passe</label></dt> 
                             <dd><input type='password'name='motpasse' id="password" aria-desribedby="password-id"></dd>
                             <p id="password-id" aria-hidden="true">
-                            Votre mot de passe doit contenir au moins 8 caractères, incluant une majuscule, une minuscule et un chiffre.
                             </dl>
                         <input type='submit'>
                     </form>

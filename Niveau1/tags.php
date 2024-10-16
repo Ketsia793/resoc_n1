@@ -79,6 +79,7 @@ session_start();
                     SELECT posts.content,
                     posts.created,
                     posts.user_id,
+                    posts.id as post_id,
                     users.alias as author_name,  
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
@@ -98,6 +99,8 @@ session_start();
                 {
                     echo("Échec de la requete : " . $mysqli->error);
                 }
+
+                include 'like.php';
               
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php

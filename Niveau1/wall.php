@@ -48,7 +48,7 @@ session_start();
                         (n° <?php echo $userId ?>)
                     </p>
 
-                <!-- ---------- MON CODE ---------- -->
+                <!-- ---------- Suivre une autre utilisatrice ---------- -->
                 <?php 
                 // echo ('🐝' . $_SESSION['connected_id']);
                 // echo ('🐞' . $_GET['user_id']);
@@ -70,7 +70,7 @@ session_start();
                 </form> 
                 <?php } ?>
                 
-                <!-- ---------- FIN DE MON CODE ---------- -->
+                <!-- ---------- // Suivre une autre utilisatrice ---------- -->
             </section>
         </aside>
             <main>
@@ -80,11 +80,14 @@ session_start();
                     include 'new-article.php';
                 } 
 
+
                 // Etape 3: récupérer tous les messages de l'utilisatrice
-                $lesInformations = sqlStructure(retrieveWallPosts($userId), $mysqli);
+                $lesInformations2 = sqlStructure(retrieveWallPosts($userId), $mysqli);
+
+                include 'like.php';
 
                 // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
-                while ($post = $lesInformations->fetch_assoc())
+                while ($post = $lesInformations2->fetch_assoc())
                 {
                     // echo "<pre>" . print_r($post, 1) . "</pre>";
                     ?>               

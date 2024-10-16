@@ -1,14 +1,18 @@
 <?php 
 
+// --- 1 fichier retrieve
 function sqlStructure($sqlQuery, $mysqli) {
     // $laQuestionEnSql = $sqlQuery;
     $lesInformations = $mysqli->query($sqlQuery);
 
     // Vérification
-    if ( ! $lesInformations)
-    {
-        echo("Échec de la requete : " . $mysqli->error);
-    }
+    // if ( ! $lesInformations)
+    // {
+    //     echo("Échec de la requete : " . $mysqli->error);
+    // } else {
+    //     echo "Votre inscription est un succès " . $new_alias . ".";
+    //     echo " <a href='login.php'>Connectez-vous.</a>";
+    // }
     return $lesInformations;
 }
 
@@ -101,7 +105,6 @@ function insertNewUser($new_email, $new_alias, $new_passwd) {
         ";
     return $newUser;
 }
-
 
 // Insertion des nouveaux posts (table new-article.php)
 function insertNewPost($authorId, $postContent) {

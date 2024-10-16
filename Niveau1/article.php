@@ -17,21 +17,10 @@
     </div>
     <footer>
         <small>
-            <?php 
-                // echo ("🦄" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
-                // var_dump ($post);
-                // echo ($post['post_id']);
-
-                $enCoursLike = isset($_POST['like']);
-                if ($enCoursLike) {
-                    $postId = $post['post_id'];
-                    
-                    $lesInformations = sqlStructure(insertNewLike($_SESSION['connected_id'], $postId), $mysqli);
-                }
-            ?>
             <form action="<?php $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>" method="post">
-                <input type='hidden' name='like' value='true'>
-                <input type='submit' value='♥ <?php echo $post['like_number'] ?>'>
+                <input type='hidden' name='like' value='false'>
+                <input type='hidden' name='post_id' value="<?php echo $post['post_id']?>">
+                <input type="submit" value="♥ <?php echo $post['like_number'] ?>">
             </form> 
         </small>
 
