@@ -56,9 +56,7 @@ session_start();
                 <?php
                 // Etape 3: récupérer tous les messages des abonnements
                 $allPosts = sqlStructure(retrieveFeedPosts($userId), $mysqli);
-                
-                include 'partials/like.php';
-                
+                                
                 // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $allPosts->fetch_assoc())
                 {

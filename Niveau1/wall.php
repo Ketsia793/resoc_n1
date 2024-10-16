@@ -81,8 +81,6 @@ session_start();
                 // Etape 3: récupérer tous les messages de l'utilisatrice
                 $allPosts = sqlStructure(retrieveWallPosts($userId), $mysqli);
 
-                include 'partials/like.php';
-
                 // Etape 4: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $allPosts->fetch_assoc())
                 {

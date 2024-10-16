@@ -57,8 +57,6 @@ session_start();
                 
                 // Etape 4: récupérer tous les messages avec un mot clé donné
                 $postsByTag = sqlStructure(retrievePostByTags($tagId), $mysqli);
-
-                include 'partials/like.php';
               
                 // Etape 5: Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                 while ($post = $postsByTag->fetch_assoc())
