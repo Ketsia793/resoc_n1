@@ -1,9 +1,9 @@
 <?php 
 
 // --- 1 fichier retrieve
-function sqlStructure($sqlQuery, $mysqli) {
+// function sqlStructure($sqlQuery, $mysqli) {
     // $laQuestionEnSql = $sqlQuery;
-    $lesInformations = $mysqli->query($sqlQuery);
+    // $lesInformations = $mysqli->query($sqlQuery);
 
     // Vérification
     // if ( ! $lesInformations)
@@ -13,8 +13,8 @@ function sqlStructure($sqlQuery, $mysqli) {
     //     echo "Votre inscription est un succès " . $new_alias . ".";
     //     echo " <a href='login.php'>Connectez-vous.</a>";
     // }
-    return $lesInformations;
-}
+    // return $lesInformations;
+// }
 
 
 // ---------- RETRIEVE REQUESTS ---------- // 

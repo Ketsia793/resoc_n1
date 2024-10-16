@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'database/connection.php';
+    include 'database/retrieve.php';
     include 'database/sql-queries.php';
 ?>
 
@@ -24,7 +25,7 @@ session_start();
         ?>
         <div id="wrapper">
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez la liste des personnes dont
@@ -59,7 +60,7 @@ session_start();
                     // echo "<pre>" . print_r($followed, 1) . "</pre>";
                     ?>
                     <article>
-                        <img src="user.jpg" alt="blason"/>
+                        <img src="images/user.jpg" alt="blason"/>
                         <h3><a href="wall.php?user_id=<?php echo $followed['id'] ?>"><?php echo $followed['alias'] ?></a></h3>
                         <p>id: <?php echo $followed['id'] ?></p>                    
                     </article>

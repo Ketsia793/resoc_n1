@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'database/connection.php';
+    include 'database/retrieve.php';
     include 'database/sql-queries.php';
 ?>
 
