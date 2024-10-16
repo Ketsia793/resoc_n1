@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'database/connection.php';
+    include 'database/retrieve.php';
     include 'database/sql-queries.php';
 ?>
 
@@ -59,7 +60,7 @@
                     $pseudo_name = isset($_POST['pseudo']);
                     
                     if ($enCoursDeTraitement) {
-                        // on ne fait ce qui suit que si un formulaire a été soumis.
+
                         // Etape 2: récupérer ce qu'il y a dans le formulaire
                         // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         $new_email = $_POST['email'];

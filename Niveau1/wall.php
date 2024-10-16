@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'database/connection.php';
+    include 'database/retrieve.php';
     include 'database/sql-queries.php';
 ?>
 
@@ -41,7 +42,7 @@ session_start();
                 $user = $lesInformations2->fetch_assoc();
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo $user['alias'] ?>
@@ -50,9 +51,6 @@ session_start();
 
                 <!-- ---------- Suivre une autre utilisatrice ---------- -->
                 <?php 
-                // echo ('🐝' . $_SESSION['connected_id']);
-                // echo ('🐞' . $_GET['user_id']);
-                
                 if ($_GET['user_id'] !== $_SESSION['connected_id']) { 
                 
                     $enCoursFollow = isset($_POST['follow']);

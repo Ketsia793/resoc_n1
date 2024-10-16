@@ -3,6 +3,7 @@
     ini_set( 'display_errors', 1 );
 
     include 'database/connection.php';
+    include 'database/retrieve.php';
     include 'database/sql-queries.php';
 ?>
 
@@ -26,7 +27,7 @@ session_start();
 
 
             <aside>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="images/user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les informations de l'utilisatrice
@@ -36,23 +37,14 @@ session_start();
             </aside>
             <main>
                 <?php
-                /**
-                 * Etape 1: Les paramètres concernent une utilisatrice en particulier
-                 * La première étape est donc de trouver quel est l'id de l'utilisatrice
-                 * Celui ci est indiqué en parametre GET de la page sous la forme user_id=...
-                 * Documentation : https://www.php.net/manual/fr/reserved.variables.get.php
-                 * ... mais en résumé c'est une manière de passer des informations à la page en ajoutant des choses dans l'url
-                 */
-                 $userId = intval($_GET['user_id']);
+                
+                // Etape 1: La première étape est donc de trouver quel est l'id de l'utilisatrice
+                $userId = intval($_GET['user_id']);
 
-
-                /**
-                 * Etape 2: se connecter à la base de donnée
-                 */
+                // Etape 2: se connecter à la base de donnée
                 $mysqli = connectToDatabase();
-                /**
-                 * Etape 3: récupérer le nom de l'utilisateur
-                 */
+                 
+                // Etape 3: récupérer le nom de l'utilisateur
                 $laQuestionEnSql = "
                     SELECT users.*, 
                     count(DISTINCT posts.id) as totalpost, 
@@ -65,6 +57,7 @@ session_start();
                     WHERE users.id = '$userId' 
                     GROUP BY users.id
                     ";
+
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 if ( ! $lesInformations)
                 {
@@ -72,10 +65,7 @@ session_start();
                 }
                 $user = $lesInformations->fetch_assoc();
 
-                /**
-                 * Etape 4: à vous de jouer
-                 */
-                //@todo: afficher le résultat de la ligne ci dessous, remplacer les valeurs ci-après puiseffacer la ligne ci-dessous
+                // Etape 4: Remplacer les valeurs par les résultats de la requête
                 ($user);
                 ?>                
                 <article class='parameters'>

@@ -18,14 +18,13 @@
         $postContent = $mysqli->real_escape_string($postContent);
 
         //Etape 4 : construction de la requete
-        $lesInformations = sqlStructure(insertNewPost($authorId, $postContent), $mysqli);
+        $newMessage = sqlStructure(insertNewPost($authorId, $postContent), $mysqli);
     }
 
     ?>                     
     <form action="wall.php?user_id=<?php echo $_GET['user_id'] ?>" method="post">
         <dl>
-            <!-- <dt><label for='message'>Message</label></dt> -->
-            <dd><textarea type='text' name='message' rows='4' cols='98' placeholder="Write something..."></textarea></dd>
+            <dd><textarea type='text' name='message' rows='4' cols='98' placeholder="Quoi de neuf ?"></textarea></dd>
         </dl>
         <input type='submit' value='Publier'>
     </form>               
