@@ -1,4 +1,4 @@
-Réseau social PHP 
+**Réseau social PHP**
 
 ## À propos
 Il s'agit d'un projet collectif impôsé par le centre de formation. Nous devions nous approprier un code existant en PHP et repérer les possibles erreurs aperçues dans les différents dossiers.
